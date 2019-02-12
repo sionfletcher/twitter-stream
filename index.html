@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
+	</head>
+	<body>
+
+	<div id="tweets"></div>
+
+	<script>
+
+        var tweets = document.querySelector('#tweets');
+	
+		function prependTweet(data) {
+            var tweet = document.createElement('div');
+            tweet.textContent = data.text;
+            tweets.prepend(tweet);
+		}
+
+		var socket = io.connect('http://localhost:3000');
+		socket.on('tweet', function(data) {
+			prependTweet(data);
+		});
+	</script>
+	</body>
+</html>
